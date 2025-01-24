@@ -235,6 +235,8 @@ def run_optimization(preferences, base):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Render の環境変数 PORT を取得し、デフォルト値は 5000 に設定
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 
