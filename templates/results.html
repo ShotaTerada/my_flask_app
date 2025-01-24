@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Optimization Results</title>
+    <style>
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .message {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Optimization Results</h1>
+
+
+    {% if results %}
+    <h2>最適化成功！</h2>
+    <h2>LINE投稿用フォーマット</h2>
+    <pre>
+{{ message }}
+    </pre>
+
+    <h2>詳細結果</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Driver</th>
+                <th>Group</th>
+                <th>Assigned Members</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car, group, members in results %}
+            <tr>
+                <td>{{ car }}</td>
+                <td>{{ group }}</td>
+                <td>{{ members | join(', ') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  
+
+    <h2>参加者情報</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>希望グループ</th>
+                <th>定員</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in failure_data or participant_table %}
+            <tr>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.group }}</td>
+                <td>{{ participant.capacity }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+    {% elif failure_data %}
+    <h2>Optimization Failed</h2>
+    <p class="message">参加人数: {{ failure_data.total_participants }}人, 車の総定員: {{ failure_data.total_capacity }}人</p>
+    <table>
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>希望グループ</th>
+                <th>定員</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in failure_data.participants %}
+            <tr>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.group }}</td>
+                <td>{{ participant.capacity }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>
+
+

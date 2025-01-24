@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Day</title>
+</head>
+<body>
+    <h1>Select the Day and Upload CSV</h1>
+    <form action="/" method="post" enctype="multipart/form-data"> <!-- ファイルアップロードフォーム -->
+        <label for="csv_file">Upload a CSV file:</label>
+        <input type="file" id="csv_file" name="csv_file" accept=".csv" required>
+        <br><br>
+
+        <label for="day">Choose a day:</label>
+        <select name="day" id="day" required>
+            <option value="Mon">Monday</option>
+            <option value="Wed">Wednesday</option>
+            <option value="Thu">Thursday</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+
+
+
+

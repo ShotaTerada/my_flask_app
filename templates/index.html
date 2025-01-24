@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Assignment App</title>
+</head>
+<body>
+    <h1>Car Assignment for Medical Golf Club</h1>
+    <form action="/assign" method="post">
+        <label for="day">Select Day:</label>
+        <select name="day" id="day">
+            <option value="Mon">Monday</option>
+            <option value="Wed">Wednesday</option>
+            <option value="Thu">Thursday</option>
+        </select>
+        <br><br>
+        {% for member in members %}
+        <label for="{{ member }}">{{ member }}:</label>
+        <select name="{{ member }}">
+            <option value="先発">先発</option>
+            <option value="後発">後発</option>
+            <option value="直帰">直帰</option>
+            <option value="どちらでも">どちらでも</option>
+            <option value="不参加">不参加</option>
+        </select>
+        <br><br>
+        {% endfor %}
+        <input type="submit" value="Assign">
+    </form>
+</body>
+</html>
+

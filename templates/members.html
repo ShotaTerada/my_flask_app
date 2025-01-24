@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Preferences</title>
+</head>
+<body>
+    <h1>Preferences for {{ day }}</h1>
+    <form action="/assign" method="post">
+        <!-- 曜日情報を隠しフィールドで送信 -->
+        <input type="hidden" name="day" value="{{ day }}">
+        
+        <!-- 部員ごとの希望選択 -->
+        {% for member, preference in members %}
+        <div>
+            <label for="member-{{ member }}">{{ member }}:</label>
+            <select name="{{ member }}" id="member-{{ member }}">
+                <option value="先発" {% if preference == '先発' %} selected {% endif %}>先発</option>
+                <option value="後発" {% if preference == '後発' %} selected {% endif %}>後発</option>
+                <option value="直帰" {% if preference == '直帰' %} selected {% endif %}>直帰</option>
+                <option value="どちらでも" {% if preference == 'どちらでも' %} selected {% endif %}>どちらでも</option>
+                <option value="不参加" {% if preference == '不参加' %} selected {% endif %}>不参加</option>
+            </select>
+        </div>
+        {% endfor %}
+        
+        <!-- 最適化実行ボタン -->
+        <button type="submit">Run Optimization</button>
+    </form>
+</body>
+</html>
+
